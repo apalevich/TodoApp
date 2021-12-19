@@ -6,4 +6,4 @@ This App was created as a part of [Juriy Bura's](https://github.com/Juriy) React
 Todo App developed with __react-start-app__ so it contains Babel, Webpack and uses jsx syntax
 
 ## Structure
-All components are stored into ./components folder
+All components are stored into ./src/components folder
