@@ -55,33 +55,45 @@ export default class App extends Component {
         })
     };
 
+    toggleProperty = (arr, id, propName) => {
+        const idx = arr.findIndex((el) => el.id === id);
+
+        const oldItem = arr[idx];
+        const newItem = {
+            ...oldItem,
+            [propName]: !oldItem[propName]
+        };
+        return [
+            ...arr.slice(0, idx),
+            newItem,
+            ...arr.slice(idx+1)
+        ];
+    }
+
     onToggleImportant = (id) => {
-        console.log('Important ' + id)
+        this.setState(({ todoData }) => {
+            return {
+                todoData: this.toggleProperty(todoData, id, 'important')
+            }
+        })
     };
 
     onToggleDone = (id) => {
         this.setState(({ todoData }) => {
-            const idx = todoData.findIndex((el) => el.id === id);
-
-            const oldItem = todoData[idx];
-            const newItem = {
-                ...oldItem,
-                done: !oldItem.done
-            };
-            const newArr = [
-                ...todoData.slice(0, idx),
-                newItem,
-                ...todoData.slice(idx+1)
-            ];
             return {
-                todoData: newArr
+                todoData: this.toggleProperty(todoData, id, 'done')
             }
         })
     } ;
     
     render() {
+        const { todoData } = this.state;
+
+        const doneCount = todoData.filter((el) => el.done).length;
+        const todoCount = todoData.length - doneCount;
+
         return (<div className="todo-app">
-            <AppHeader toDo={-1} done={-1} />
+            <AppHeader toDo={todoCount} done={doneCount} />
             <div className="top-panel d-flex">
                 <SearchPanel />
             </div>
