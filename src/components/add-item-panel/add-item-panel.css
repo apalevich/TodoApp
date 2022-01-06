@@ -1,12 +1,7 @@
-.add-item-container {
-    display: flex;
-    margin-top: 15px;
+.item-add-form {
+    margin-top: 10px;
 }
 
-.add-item-container__input {
-    width: 70%;
-}
-
-.add-item-container__button {
-    width: 30%;
+.item-add-form input {
+    margin-right: 3px;
 }

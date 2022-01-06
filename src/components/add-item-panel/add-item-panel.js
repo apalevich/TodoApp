@@ -1,25 +1,48 @@
+import { render } from "@testing-library/react";
 import React from "react";
+import { Component } from "react";
 
 import "./add-item-panel.css"
 
-const AddItem = (props) => {
-    return (
-        <div className="add-item-container">
-            <input
-                className="add-item-container__input"
-                type="text"
-                placeholder="New task"
-            >
-            </input>
-            <button
-                type="button"
-                className="btn btn-outline-secondary add-item-container__button"
-                onClick={ () => props.onItemAdded('item') }
-            >
-                Add
-            </button>
-        </div>
-    )
-}
+export default class AddItem extends Component {
+    state = {
+        label: ''
+    }
 
-export default AddItem;
+    onLabelChange = (e) => {
+        this.setState({
+            label: e.target.value
+        });
+    }
+
+    onSubmit = (e) => {
+        e.preventDefault();
+        this.props.onItemAdded(this.state.label);
+        this.setState({
+            label: ''
+        });
+        
+    }
+
+    render() {
+        return (
+            <form
+                className="item-add-form d-flex"
+                onSubmit={ this.onSubmit }
+            >
+
+                <input
+                    className="form-control"
+                    type="text"
+                    onChange={ this.onLabelChange }
+                    placeholder="New task"
+                />
+                <button
+                    className="btn btn-outline-secondary"
+                >
+                    Add Item
+                </button>
+            </form>
+        )
+    }
+}
