@@ -21,7 +21,7 @@ export default class AddItem extends Component {
         this.setState({
             label: ''
         });
-        
+
     }
 
     render() {
@@ -36,6 +36,7 @@ export default class AddItem extends Component {
                     type="text"
                     onChange={ this.onLabelChange }
                     placeholder="New task"
+                    value={ this.state.label }
                 />
                 <button
                     className="btn btn-outline-secondary"
