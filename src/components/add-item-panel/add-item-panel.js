@@ -24,10 +24,13 @@ export default class AddItem extends Component {
 
     }
 
+    // TODO: Фильтр поиска
+    // TODO: Фильтры
+
     render() {
         return (
             <form
-                className="item-add-form d-flex"
+                className="item-add-form d-flex mt-3"
                 onSubmit={ this.onSubmit }
             >
 
