@@ -19,7 +19,8 @@ export default class App extends Component {
                 this.createFilterButton('All', true),
                 this.createFilterButton('Active', false),
                 this.createFilterButton('Done', false)
-            ]
+            ],
+            query: ''
         }
     }
 
@@ -109,7 +110,10 @@ export default class App extends Component {
                 item.visible = item.label.toLowerCase().includes(query.toLowerCase()) ? true : false
             })
             
-            return {todoData: newArr}
+            return {
+                todoData: newArr,
+                query
+            }
         })
     }
 
@@ -140,7 +144,8 @@ export default class App extends Component {
 
             return {
                 buttons: newButArr,
-                todoData: todoArr
+                todoData: todoArr,
+                query: ''
             }
         })
     }
@@ -154,11 +159,14 @@ export default class App extends Component {
         return (
             <div className="todo-app">
                 <AppHeader
-                    toDo={todoCount}
-                    done={doneCount}
+                    toDo={ todoCount }
+                    done={ doneCount }
                 />
                 <div className="top-panel d-flex mt-3">
-                    <SearchPanel onChange={ this.onSearch }/>
+                    <SearchPanel
+                        onChange={ this.onSearch }
+                        value={ this.state.query }    
+                    />
                     <ItemStatusFilter
                         buttons={ buttons }
                         onClick={ this.onToggleFilter }
