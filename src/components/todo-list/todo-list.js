@@ -6,8 +6,8 @@ import './todo-list.css';
 const TodoList = ({ todos, onDeleted, onToggleImportant, onToggleDone }) => {
 
   const elements = todos
-                    .filter((item) => {return item.visible})
-                    .map((item) => {
+  .filter((item) => {return item.visible})
+  .map((item) => {
     const { id, ...itemProps } = item;
 
     return (
