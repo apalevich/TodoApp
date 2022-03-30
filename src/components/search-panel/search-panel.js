@@ -1,5 +1,4 @@
 import React from "react";
-import { Component } from "react";
 import "./search-panel.css";
 
 const SearchPanel = ({ onChange, value }) => {
